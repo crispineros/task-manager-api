@@ -1,7 +1,10 @@
 package com.example.taskManager.service;
 
+import com.example.taskManager.exception.ResourceNotFoundException;
 import com.example.taskManager.model.Task;
 import com.example.taskManager.repository.TaskRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.Optional;
 public class TaskService {
     private final TaskRepository taskRepository;
 
+@Autowired
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
@@ -19,8 +23,9 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Optional<Task> getTaskById(Long id) {
-        return taskRepository.findById(id);
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Task with ID " + id + " not found"));
     }
 
     public Task createTask(Task task) {
