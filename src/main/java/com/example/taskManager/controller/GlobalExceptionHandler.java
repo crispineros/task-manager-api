@@ -47,6 +47,7 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+// Previous ResourceNotFoundException code
  /* @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> handleResourceNotFoundException(ResourceNotFoundException ex) {

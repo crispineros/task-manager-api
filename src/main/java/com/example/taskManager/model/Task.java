@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Task {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +18,7 @@ public class Task {
     @Size(max = 255, message = "Description must be less than 255 characters")
     private String description;
     private boolean completed;
-
+    
     // Constructors
     public Task() {}
     public Task(String title, String description, boolean completed) {
